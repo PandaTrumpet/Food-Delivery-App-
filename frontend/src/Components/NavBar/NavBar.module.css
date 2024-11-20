@@ -1,0 +1,40 @@
+.navBar {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBar .logo {
+    width: 150px;
+}
+
+.navBarMenu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: #49557e;
+    font-size: 18px;
+}
+
+.navBarRight {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navBar button {
+    background: transparent;
+    font-size: 16px;
+    color: #49557e;
+    border: 1px solid tomato;
+    padding: 10px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navBar button:hover {
+    background-color: #fff4f2;
+
+}
