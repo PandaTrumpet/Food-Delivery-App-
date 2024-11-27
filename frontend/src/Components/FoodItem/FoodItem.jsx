@@ -23,7 +23,7 @@ const FoodItem = ({ id, name, description, image, price }) => {
               alt="Minus"
               onClick={() => removeFromCart(id)}
             />
-            <p>{cartItems[1]}</p>
+            <p>{cartItems[id]}</p>
             <img
               src={assets.add_icon_green}
               alt="Plus"
