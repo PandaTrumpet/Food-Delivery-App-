@@ -6,11 +6,15 @@ import "./index.css";
 import Cart from "./Pages/Cart/Cart.jsx";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
+import { useState } from "react";
+import LoginPopup from "./Components/LoginPopup/LoginPopup.jsx";
 const App = () => {
+  const [showLogin, setShowLogin] = useState(false);
   return (
     <>
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <div className="app">
-        <NavBar />
+        <NavBar setShowLogin={setShowLogin} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
