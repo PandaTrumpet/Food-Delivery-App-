@@ -1,3 +1,4 @@
+import createHttpError from "http-errors";
 import foodModel from "../models/FoodModel.js";
 import fs from "fs";
 
@@ -29,17 +30,19 @@ const listFood = async (req, res) => {
   try {
     const foods = await foodModel.find({});
     if (foods.length === 0) {
-      throw Error(401);
+      throw createHttpError(404, "There is no food available!");
     }
     res.json({
       success: true,
       data: foods,
     });
   } catch (error) {
-    console.log(error);
-    res.json({
+    const statusCode = error.status || 500;
+    const errorMessage = error.message || "Internal Server Error";
+
+    res.status(statusCode).json({
       success: false,
-      message: "There is no items!",
+      message: errorMessage,
     });
   }
 };
