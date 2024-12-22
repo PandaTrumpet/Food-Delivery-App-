@@ -14,17 +14,34 @@ const List = ({ url }) => {
       toast.error("Error");
     }
   };
+  // const removeFood = async (foodId) => {
+  //   const response = await axios.post(`${url}/api/food/remove`, {
+  //     id: foodId,
+  //   });
+  //   await fetchList();
+  //   if (response.data.success) {
+  //     toast.success(response.data.message);
+  //   } else {
+  //     toast.error("Error!");
+  //   }
+  // };
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, {
-      id: foodId,
-    });
-    await fetchList();
-    if (response.data.success) {
-      toast.success(response.data.message);
-    } else {
-      toast.error("Error!");
+    try {
+      const response = await axios.post(`${url}/api/food/remove`, {
+        id: foodId,
+      });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        // Обновляем список без повторного запроса
+        setList((prevList) => prevList.filter((item) => item._id !== foodId));
+      } else {
+        toast.error("Error!");
+      }
+    } catch (error) {
+      toast.error("Error while removing food!");
     }
   };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -39,19 +56,20 @@ const List = ({ url }) => {
           <b>Price</b>
           <b>Action</b>
         </div>
-        {list.map((item, index) => {
-          return (
-            <div key={index} className="list-table-format">
-              <img src={`${url}/images/` + item.image} alt="" />
-              <p>{item.name}</p>
-              <p>{item.category}</p>
-              <p>{item.price}</p>
-              <p onClick={() => removeFood(item._id)} className="cursor">
-                x
-              </p>
-            </div>
-          );
-        })}
+        {list.length > 0 &&
+          list.map((item) => {
+            return (
+              <div key={item._id} className="list-table-format">
+                <img src={`${url}/images/` + item.image} alt="" />
+                <p>{item.name}</p>
+                <p>{item.category}</p>
+                <p>{item.price}</p>
+                <p onClick={() => removeFood(item._id)} className="cursor">
+                  x
+                </p>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
