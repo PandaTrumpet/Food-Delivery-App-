@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // placing user order for frontend
 const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:5173";
+  const frontend_url = "http://localhost:5174";
   try {
     const newOrder = new orderModel({
       userId: req.body.userId,
@@ -54,7 +54,7 @@ const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
   try {
     if (success === "true") {
-      await orderModel.findByIdAndUpdate(orderId, { paymaent: true });
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
       res.json({
         success: true,
         message: "Order placed successfully",
@@ -71,4 +71,59 @@ const verifyOrder = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
-export { placeOrder, verifyOrder };
+
+// user ordersfor frontend
+const userOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({
+      success: true,
+      data: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Listing orders for admin panel
+
+const listOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({
+      success: true,
+      data: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// api for updating order status
+
+const updateStatus = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId, {
+      status: req.body.status,
+    });
+    res.json({
+      success: true,
+      message: "Status Updated",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
