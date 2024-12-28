@@ -1,7 +1,3 @@
-dsavontrumpet Username
-Password pandatrumpet
 
 
-mongodb+srv://dsavontrumpet:pandatrumpet@cluster0.il8cf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
-mongodb+srv://dsavontrumpet:pandatrumpet@cluster0.il8cf.mongodb.net/?
