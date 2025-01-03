@@ -18,7 +18,6 @@ const loginUser = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    // console.log(isMatch);
     if (!isMatch) {
       return res.json({
         success: false,
@@ -81,10 +80,6 @@ const registerUser = async (req, res) => {
     });
 
     const user = await newUser.save();
-
-    // const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-    //   expiresIn: "1d",
-    // });
 
     const token = createToken(user._id);
 
