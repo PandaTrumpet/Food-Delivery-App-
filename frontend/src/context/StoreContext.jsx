@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-// import { food_list } from "../assets/assets.js";
+
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
@@ -33,9 +33,6 @@ const StoreContextProvider = (props) => {
       );
     }
   };
-  // useEffect(() => {
-  //   console.log(cartItems);
-  // }, [cartItems]);
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;

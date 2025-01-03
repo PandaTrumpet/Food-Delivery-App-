@@ -52,7 +52,7 @@ const NavBar = ({ setShowLogin }) => {
         <img src={assets.search_icon} alt="Search_Icon" />
         <div className={css.navBarSearchIcon}>
           <Link to="/cart">
-            <img src={assets.basket_icon} alt="" />
+            <img src={assets.basket_icon} alt="Basket icon" />
           </Link>
           <div className={getTotalCartAmount() === 0 ? "" : css.dot}></div>
         </div>
@@ -63,12 +63,12 @@ const NavBar = ({ setShowLogin }) => {
             <img src={assets.profile_icon} alt="" />
             <ul className={css.navProfileDropdown}>
               <li onClick={() => navigate("/myorders")}>
-                <img src={assets.bag_icon} alt="" />
+                <img src={assets.bag_icon} alt="Bag icon" />
                 <p>Orders</p>
               </li>
               <hr />
               <li onClick={logout}>
-                <img src={assets.logout_icon} alt="" />
+                <img src={assets.logout_icon} alt="Logout icon" />
                 <p>Logout</p>
               </li>
             </ul>

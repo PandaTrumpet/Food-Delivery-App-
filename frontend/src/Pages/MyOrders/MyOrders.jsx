@@ -15,7 +15,6 @@ const MyOrders = () => {
     );
 
     setData(response.data.data);
-    // console.log(response.data.data);
   };
   useEffect(() => {
     if (token) {
