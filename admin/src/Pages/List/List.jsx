@@ -14,17 +14,7 @@ const List = ({ url }) => {
       toast.error("Error");
     }
   };
-  // const removeFood = async (foodId) => {
-  //   const response = await axios.post(`${url}/api/food/remove`, {
-  //     id: foodId,
-  //   });
-  //   await fetchList();
-  //   if (response.data.success) {
-  //     toast.success(response.data.message);
-  //   } else {
-  //     toast.error("Error!");
-  //   }
-  // };
+
   const removeFood = async (foodId) => {
     try {
       const response = await axios.post(`${url}/api/food/remove`, {
@@ -60,7 +50,7 @@ const List = ({ url }) => {
           list.map((item) => {
             return (
               <div key={item._id} className="list-table-format">
-                <img src={`${url}/images/` + item.image} alt="" />
+                <img src={`${url}/images/` + item.image} alt="Item image" />
                 <p>{item.name}</p>
                 <p>{item.category}</p>
                 <p>{item.price}</p>
